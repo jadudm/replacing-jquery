@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>Replacing JQuery</title>
+</head>
+<body>
+    <script>
+        let MiniQuery = class {
+            constructor (queryString) {
+                this.queryString = queryString;
+                // In JQuery...
+                // $(".thing") selects all instances 
+                this.elements = document.querySelectorAll(queryString);
+
+                console.log(this.elements)
+            }
+        
+            hide () {
+                console.log("hide");
+                this.elements.forEach(e => { e.style.display = "none" });
+                return this;
+            }
+        }
+
+        function $ (selector) {
+            q = new MiniQuery(selector);
+            return q;
+        }
+
+    </script>
+
+    <div id="one" class="a">One</div>
+    <div id="two" class="a">Two</div>
+    <div id="three" class="b">Three</div>
+    <div id="four" class="b">Four</div>
+    <div id="five" class="c">Five</div>
+
+    <script>
+        $(".a").hide();
+        $("#five").hide();
+    </script>
+</body>
+</html>
